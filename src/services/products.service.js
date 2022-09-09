@@ -5,13 +5,13 @@ const getProducts = async () => {
   return products;
 };
 
-const getProductsId = async (id) => {
-  const product = await productsModel.getProductsId(id);
+const getProductId = async (id) => {
+  const product = await productsModel.getProductId(id);
 
   return product;
 };
 
 module.exports = {
   getProducts,
-  getProductsId,
+  getProductId,
 };
