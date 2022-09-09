@@ -8,11 +8,11 @@ const getProducts = async () => {
 };
 
 const getProductsId = async (id) => {
-  const [product] = await connection.execute(
+  const [productId] = await connection.execute(
     'SELECT * FROM products WHERE id = ?',
     [id],
   );
-  return product;
+  return productId;
 };
 
 module.exports = {
