@@ -20,7 +20,6 @@ const insertProduct = async (name) => {
     'INSERT INTO products (name) VALUE (?)',
     [name],
     );
-    console.log(product);
   return product;
 };
 

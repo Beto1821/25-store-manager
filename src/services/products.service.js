@@ -14,7 +14,6 @@ const getProductId = async (id) => {
 const insertProduct = async (name) => {
   const newProduct = await productsModel.insertProduct(name);
   const product = { id: newProduct.insertId, name };
-  console.log(product);
   return product;
 };
 
