@@ -19,6 +19,8 @@ const insertProduct = async (req, res) => {
   const { type, message } = await productsService.insertProduct(name);
 
   if (type) return res.status(type).json(message);
+
+  res.status(201).json(message);
 };
 
 module.exports = {
