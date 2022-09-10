@@ -5,24 +5,52 @@ const productsModel = require('../../../src/models/products.model');
 const productsService = require('../../../src/services/products.service');
 const mockProducts = require('./mocks/productsService.mock');
 
-describe('testando product_services', function () {
-  beforeEach(function () {
-    sinon.stub(productsModel, 'getProducts').resolves(mockProducts);
+describe('Testando camada Service', () => { 
+  
+  beforeEach(sinon.restore);
+
+  describe("testando função getAll", () => {
+    it("retorna todos os produtos", async () => {
+      sinon.stub(productsModel, "getProducts").resolves(mockProducts);
+      const response = await productsService.getProducts();
+      expect(response).to.be.deep.equal(mockProducts);
+    });
+    it("retorna undefined", async () => {
+      sinon.stub(productsModel, "getProducts").resolves();
+      const response = await productsService.getProducts();
+      expect(response).to.equal(undefined);
+    });
   });
 
-  afterEach(function () {
-    sinon.restore();
-  });
+  describe('teste de getById', () => {
+    describe('ao achar produto com id informado', () => {
+      it('retorna um objeto com chave id e name', async () => {
+        const query = { "id": 1, "name": "Machado do Thor Stormbreaker" }
+        sinon.stub(productsModel, 'getProductId').resolves(query);
+        const product = await productsService.getProductId(1);
+        expect(product).to.be.a('object');
+        expect(product).to.be.all.keys('id','name');
+      })
+    })
 
-  it('A lista de produtos é um array', async function () {
-    const result = await productsService.getProducts();
-    
-    expect(result instanceof Array).to.equal(true);
-  });
+    describe('ao não achar produto com id informado', () => {
+      it('retorna null ', async () => {
+        sinon.stub(productsModel, 'getProductId').resolves();
+        const product = await productsService.getProductId(999);
+        expect(product).to.equal(null);
+      })
+    })
+  })
 
-  it('Retorna a lista de produtos com sucesso', async function () {
-    const result = await productsService.getProducts();
-
-    expect(result).to.deep.equal(mockProducts);
-  });
+  describe('testando a função create', () => {
+    describe('produto criado com sucesso', () => {
+      it('retorna o id do novo produto', async () => {
+        const execute = [{ insertId: 4 }];
+        sinon.stub(productsModel, "insertProduct").resolves(execute);
+        const product = await productsService.insertProduct("ProdutoX");
+        expect(product).to.be.an('object');
+        expect(product).to.be.all.keys('id', 'name');
+      })
+    })
+  })
 });
