@@ -19,7 +19,8 @@ const insertProduct = async (name) => {
   const [product] = await connection.execute(
     'INSERT INTO products (name) VALUE (?)',
     [name],
-  );
+    );
+    console.log(product);
   return product;
 };
 

@@ -33,10 +33,10 @@ describe('Testando camada Service', () => {
       })
     })
 
-    describe('ao não achar produto com id informado', () => {
+    describe('não acha produto com id informado', () => {
       it('retorna null ', async () => {
         sinon.stub(productsModel, 'getProductId').resolves();
-        const product = await productsService.getProductId(999);
+        const product = await productsService.getProductId(9);
         expect(product).to.equal(null);
       })
     })

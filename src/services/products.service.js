@@ -7,14 +7,15 @@ const getProducts = async () => {
 
 const getProductId = async (id) => {
   const product = await productsModel.getProductId(id);
-
+  if (!product) return null;
   return product;
 };
 
 const insertProduct = async (name) => {
   const newProduct = await productsModel.insertProduct(name);
-
-  return { type: null, message: { id: newProduct.insertId, name } };
+  const product = { id: newProduct.insertId, name };
+  console.log(product);
+  return product;
 };
 
 module.exports = {
