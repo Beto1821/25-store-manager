@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 
 const connection = require('../../../src/models/connection');
-const mockProducts = require('./mocks/productModels.mock');
+const { mockProducts } = require('./mocks/productModels.mock');
 const productModel = require('../../../src/models/products.model')
 
 describe('Testando camada Model', () => {
@@ -24,7 +24,7 @@ describe('Testando camada Model', () => {
 
   describe("testando a função getByID", () => {
      
-      it("ao não achar produto com id informado retorna null ", async () => {
+      it("não acha produto com id informado retorna null ", async () => {
         sinon.stub(connection, 'execute').resolves([[mockProducts[0]]]);
         const result = await productModel.getProductId(1);
         expect(result).to.deep.equal(mockProducts[0]);
