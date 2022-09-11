@@ -17,8 +17,14 @@ const insertProduct = async (name) => {
   return product;
 };
 
+const checkProduct = async (prodId) => {
+  const product = await productsModel.getProductId(prodId);
+  if (!product) return false;
+};
+
 module.exports = {
   getProducts,
   getProductId,
   insertProduct,
+  checkProduct,
 };
