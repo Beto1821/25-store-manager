@@ -15,7 +15,7 @@ const insertSales = async (saleInfo) => {
   const { id } = await salesModel.insertSales();
     const sales = await Promise.all(
       saleInfo.map(({ productId, quantity }) =>
-        salesModel.createSaleProduct({ saleId: id, productId, quantity })),
+         salesModel.insertSalesProduct({ saleId: id, productId, quantity })),
     );
     return { id, itemsSold: sales };
   };

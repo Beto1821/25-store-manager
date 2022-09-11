@@ -15,7 +15,7 @@ const getSalesId = async (req, res) => {
 };
 
 const insertSales = async (req, res) => {
-  const { name } = req.body;
+  const name = req.body;
   const product = await salesService.insertSales(name);
   return res.status(201).json(product);
 };
