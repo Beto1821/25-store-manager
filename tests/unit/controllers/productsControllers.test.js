@@ -5,7 +5,7 @@ const { expect } = chai;
 const productsController = require('../../../src/controllers/products.controller');
 const productsService = require('../../../src/services/products.service');
 
-const mockProducts = require('./mocks/productsController.mock');
+const { mockProducts } = require('./mocks/productsController.mock');
 
 describe('testando camada Controller', () => {
   afterEach(sinon.restore);
