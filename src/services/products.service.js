@@ -22,9 +22,17 @@ const checkProduct = async (prodId) => {
   if (!product) return false;
 };
 
+const updateProduct = async (id, name) => {
+  const checkId = await productsModel.getProductId(id);
+  if (!checkId) return null;
+  const product = await productsModel.updateProduct(id, name);
+  return product;
+};
+
 module.exports = {
   getProducts,
   getProductId,
   insertProduct,
   checkProduct,
+  updateProduct,
 };

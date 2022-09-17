@@ -59,7 +59,8 @@ describe('testa salesModel', () => {
       it('retorna null', async () => {
         sinon.stub(connection, 'execute').resolves([[]]);
 
-        const sale = await salesModel.getSalesId(9);
+        const sale = await salesModel.getSalesIdcode .
+        (9);
         expect(sale).to.be.equal(null);
         })
       })
