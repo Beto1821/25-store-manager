@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 
 const connection = require('../../../src/models/connection');
-const { findByIdBefore, saleAllMock } = require('./mocks/productModels.mock');
+const { saleAllMock } = require('./mocks/productModels.mock');
 const salesModel = require('../../../src/models/sales.models');
 
 describe('testa salesModel', () => {
@@ -59,7 +59,7 @@ describe('testa salesModel', () => {
       it('retorna null', async () => {
         sinon.stub(connection, 'execute').resolves([[]]);
 
-        const sale = await salesModel.getSalesIdcode(9);
+        const sale = await salesModel.getSalesId(9);
         expect(sale).to.be.equal(null);
         })
       })
